@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coinis Guest Wi-Fi</title>
   <style>
     body {
@@ -25,18 +25,31 @@
     h1 {
       color: #333;
     }
+    .info {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .password-box {
+      margin-top: 10px;
+      font-weight: bold;
+      background-color: #eaeaea;
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
     .btn {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 15px;
       padding: 10px 20px;
       background-color: #007bff;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       font-size: 16px;
+      cursor: pointer;
     }
     img {
-      margin-top: 20px;
+      margin-top: 30px;
       width: 200px;
       height: 200px;
     }
@@ -45,10 +58,22 @@
 <body>
   <div class="container">
     <h1>Coinis Guest Wi-Fi</h1>
-    <p>Click the button below to connect to our guest Wi-Fi network:</p>
-    <a class="btn" href="WIFI:T:WPA;S:Coinis Guest;P:Welcome!;;">Connect to Wi-Fi</a>
-    <p>Or scan the QR code below with your phone:</p>
+    <p class="info">Network name (SSID): <strong>Coinis Guest</strong></p>
+    <p class="info">Password:</p>
+    <div class="password-box" id="wifiPassword">Welcome!</div><br/>
+    <button class="btn" onclick="copyPassword()">Copy Password</button>
+
+    <p style="margin-top: 30px;">Or scan the QR code with your phone:</p>
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=WIFI:T:WPA;S:Coinis%20Guest;P:Welcome!;;" alt="Wi-Fi QR Code">
   </div>
+
+  <script>
+    function copyPassword() {
+      const password = document.getElementById('wifiPassword').innerText;
+      navigator.clipboard.writeText(password).then(() => {
+        alert('Password copied to clipboard!');
+      });
+    }
+  </script>
 </body>
 </html>
